@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geovana – Review Class 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #D85A30;
+    --coral-light: #F4846A;
+    --coral-pale: #FFF0EC;
+    --coral-mid: #F5C4B5;
+    --dark: #1A1A1A;
+    --gray: #5A5A5A;
+    --light: #FAFAFA;
+    --white: #FFFFFF;
+    --green: #2E7D52;
+    --green-pale: #E8F5EE;
+    --red-pale: #FDECEA;
+    --red: #C0392B;
+    --gold: #C8860A;
+    --gold-pale: #FEF6E4;
+    --border: #E8D5CF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--coral-pale);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--coral);
+    color: white;
+    padding: 36px 40px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    right: 60px; bottom: -80px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .header-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 8px;
+  }
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    line-height: 1.15;
+    font-weight: 400;
+  }
+  header p {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    max-width: 480px;
+  }
+  .header-date {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    opacity: 0.65;
+    font-style: italic;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar-wrap {
+    background: white;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .progress-label { font-size: 0.82rem; color: var(--gray); white-space: nowrap; }
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    background: var(--coral-mid);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--coral);
+    border-radius: 99px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-score {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--coral);
+    white-space: nowrap;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* SECTION TITLE */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 48px 0 24px;
+  }
+  .section-badge {
+    background: var(--coral);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 99px;
+  }
+  .section-badge.speaking { background: var(--gold); }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.55rem;
+    color: var(--dark);
+    font-weight: 400;
+  }
+
+  /* CARD */
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(216,90,48,0.06);
+  }
+  .card-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 12px;
+  }
+  .card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-bottom: 18px;
+    color: var(--dark);
+    line-height: 1.4;
+  }
+
+  /* MULTIPLE CHOICE */
+  .mc-options { display: flex; flex-direction: column; gap: 10px; }
+  .mc-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+  }
+  .mc-option:hover { border-color: var(--coral-light); background: var(--coral-pale); }
+  .mc-option input[type="radio"] { accent-color: var(--coral); width: 16px; height: 16px; }
+  .mc-option.correct { border-color: var(--green); background: var(--green-pale); }
+  .mc-option.wrong { border-color: var(--red); background: var(--red-pale); }
+  .mc-option.revealed-correct { border-color: var(--green); background: var(--green-pale); }
+
+  /* GAP FILL */
+  .gap-sentence {
+    font-size: 1rem;
+    line-height: 2.2;
+    margin-bottom: 14px;
+    color: var(--dark);
+  }
+  .gap-input {
+    border: none;
+    border-bottom: 2px solid var(--coral-mid);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--coral);
+    padding: 2px 6px;
+    width: 140px;
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+  }
+  .gap-input:focus { border-bottom-color: var(--coral); }
+  .gap-input.correct { border-color: var(--green); color: var(--green); }
+  .gap-input.wrong { border-color: var(--red); color: var(--red); }
+
+  /* TRUE FALSE */
+  .tf-statement {
+    font-size: 0.97rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .tf-buttons { display: flex; gap: 8px; margin-bottom: 18px; }
+  .tf-btn {
+    padding: 7px 20px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    background: white;
+    transition: all 0.2s;
+  }
+  .tf-btn:hover { border-color: var(--coral-light); }
+  .tf-btn.selected-true { background: var(--coral); border-color: var(--coral); color: white; }
+  .tf-btn.selected-false { background: var(--dark); border-color: var(--dark); color: white; }
+  .tf-btn.correct { background: var(--green); border-color: var(--green); color: white; }
+  .tf-btn.wrong { background: var(--red); border-color: var(--red); color: white; }
+
+  /* MATCHING */
+  .match-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .match-col-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+  .match-item {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    font-size: 0.9rem;
+    background: var(--light);
+  }
+  .match-item select {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--coral);
+    outline: none;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+  .match-item.correct { border-color: var(--green); background: var(--green-pale); }
+  .match-item.wrong { border-color: var(--red); background: var(--red-pale); }
+
+  /* CHECK BUTTON */
+  .btn-check {
+    margin-top: 20px;
+    background: var(--coral);
+    color: white;
+    border: none;
+    padding: 11px 28px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-check:hover { background: #c44e26; transform: translateY(-1px); }
+  .btn-check:disabled { background: var(--border); color: var(--gray); cursor: default; transform: none; }
+
+  /* FEEDBACK BANNER */
+  .feedback {
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.good { background: var(--green-pale); color: var(--green); border: 1px solid #a8d5bb; }
+  .feedback.bad { background: var(--red-pale); color: var(--red); border: 1px solid #f0b0a8; }
+  .feedback.partial { background: var(--gold-pale); color: var(--gold); border: 1px solid #f0d090; }
+
+  /* SPEAKING CARDS */
+  .speaking-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    border: 2px solid var(--gold-pale);
+    box-shadow: 0 2px 12px rgba(200,134,10,0.07);
+  }
+  .speaking-card .card-label { color: var(--gold); }
+  .speaking-topic {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 14px;
+    line-height: 1.45;
+  }
+  .speaking-hints {
+    background: var(--gold-pale);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+  }
+  .speaking-hints p {
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 0.72rem;
+  }
+  .speaking-hints ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .speaking-hints li {
+    background: white;
+    border: 1px solid #f0d090;
+    padding: 5px 12px;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    color: var(--dark);
+    font-style: italic;
+  }
+
+  /* TIMER */
+  .timer-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .timer-display {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--coral);
+    min-width: 70px;
+  }
+  .timer-display.running { color: var(--green); }
+  .timer-display.done { color: var(--red); }
+  .btn-timer {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 2px solid var(--coral);
+    background: white;
+    color: var(--coral);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-timer:hover, .btn-timer.active { background: var(--coral); color: white; }
+
+  /* ROLEPLAY CARD */
+  .roleplay-card {
+    background: var(--coral-pale);
+    border: 2px dashed var(--coral-mid);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+  }
+  .roleplay-role {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 8px;
+  }
+  .roleplay-text { font-size: 0.95rem; line-height: 1.55; color: var(--dark); }
+
+  /* TEACHER NOTES */
+  .teacher-note {
+    background: #fffbf0;
+    border: 1px dashed var(--gold);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 14px;
+    font-size: 0.82rem;
+    color: var(--gold);
+    display: none;
+  }
+  .teacher-note.show { display: block; }
+  .teacher-note strong { display: block; margin-bottom: 4px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+
+  .btn-note {
+    margin-top: 10px;
+    background: none;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-note:hover { background: var(--gold-pale); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0;
+  }
+
+  /* SCORE CARD */
+  .score-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    border: 2px solid var(--coral-mid);
+    margin-top: 40px;
+  }
+  .score-card h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+  .score-big {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    color: var(--coral);
+    line-height: 1;
+    margin: 16px 0 8px;
+  }
+  .score-msg { color: var(--gray); font-size: 0.95rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    header { padding: 28px 20px; }
+    header h1 { font-size: 1.8rem; }
+    main { padding: 24px 16px 60px; }
+    .card, .speaking-card { padding: 22px 18px; }
+    .match-grid { grid-template-columns: 1fr; }
+    .progress-bar-wrap { padding: 12px 20px; }
+  }
+
+  /* ANIMATIONS */
+  .card, .speaking-card { animation: fadeUp 0.4s ease both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">Review Class 🌸</div>
+  <h1>Welcome back, Geovana!</h1>
+  <p>Let's warm up and review everything we've learned together — vocabulary, grammar, and a fun speaking session.</p>
+  <div class="header-date">April 28, 2026</div>
+</header>
+
+<div class="progress-bar-wrap">
+  <span class="progress-label">Progress</span>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="progress-score" id="progressScore">0 / 7 checked</span>
+</div>
+
+<main>
+
+  <!-- ======= PART 1: PRACTICE ======= -->
+  <div class="section-header">
+    <span class="section-badge">Part 1</span>
+    <h2 class="section-title">Practice Exercises</h2>
+  </div>
+
+  <!-- EX 1: Multiple choice - QUITE / MIGHT -->
+  <div class="card">
+    <div class="card-label">Exercise 1 · Multiple Choice</div>
+    <h3>Choose the best option to complete each sentence.</h3>
+
+    <div style="margin-bottom: 22px;">
+      <p class="tf-statement">1. I'm not sure about dinner tonight. I _____ stay home.</p>
+      <div class="mc-options" id="mc1">
+        <label class="mc-option"><input type="radio" name="mc1" value="a"> quite</label>
+        <label class="mc-option"><input type="radio" name="mc1" value="b"> might</label>
+        <label class="mc-option"><input type="radio" name="mc1" value="c"> used to</label>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 22px;">
+      <p class="tf-statement">2. Her salon is _____ popular in Rio das Ostras.</p>
+      <div class="mc-options" id="mc2">
+        <label class="mc-option"><input type="radio" name="mc2" value="a"> might</label>
+        <label class="mc-option"><input type="radio" name="mc2" value="b"> quite</label>
+        <label class="mc-option"><input type="radio" name="mc2" value="c"> get used to</label>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 8px;">
+      <p class="tf-statement">3. It's _____ impossible to open a nail salon without a good location.</p>
+      <div class="mc-options" id="mc3">
+        <label class="mc-option"><input type="radio" name="mc3" value="a"> might</label>
+        <label class="mc-option"><input type="radio" name="mc3" value="b"> used to</label>
+        <label class="mc-option"><input type="radio" name="mc3" value="c"> quite</label>
+      </div>
+    </div>
+
+    <button class="btn-check" onclick="checkMC1()">✓ Check answers</button>
+    <div class="feedback" id="fb-mc1"></div>
+  </div>
+
+  <!-- EX 2: Gap fill - Daily routine verbs -->
+  <div class="card">
+    <div class="card-label">Exercise 2 · Gap Fill — Daily Routine</div>
+    <h3>Complete the sentences with the correct verb or phrase from the box.</h3>
+    <div style="background: var(--coral-pale); border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; font-size: 0.88rem; color: var(--coral);">
+      <strong>Word bank:</strong> wake up &nbsp;|&nbsp; get up &nbsp;|&nbsp; get dressed &nbsp;|&nbsp; have breakfast &nbsp;|&nbsp; work out
+    </div>
+
+    <div class="gap-sentence">1. I usually <input class="gap-input" id="gap1" placeholder="..."> at 7am, but I stay in bed a little longer.</div>
+    <div class="gap-sentence">2. After I <input class="gap-input" id="gap2" placeholder="...">, I check my messages.</div>
+    <div class="gap-sentence">3. I always <input class="gap-input" id="gap3" placeholder="..."> for work before leaving home.</div>
+    <div class="gap-sentence">4. I don't always <input class="gap-input" id="gap4" placeholder="..."> — sometimes I just have coffee.</div>
+    <div class="gap-sentence">5. She <input class="gap-input" id="gap5" placeholder="..."> in the afternoon, after her clients.</div>
+
+    <button class="btn-check" onclick="checkGaps()">✓ Check answers</button>
+    <div class="feedback" id="fb-gaps"></div>
+  </div>
+
+  <!-- EX 3: True / False - Used to -->
+  <div class="card">
+    <div class="card-label">Exercise 3 · True or False — Used to</div>
+    <h3>Read each statement about <em>used to / be used to / get used to</em> and decide: True or False?</h3>
+
+    <div id="tf-container">
+      <div class="tf-statement">1. "I <em>used to</em> have long hair" means I had long hair in the past but don't now.</div>
+      <div class="tf-buttons">
+        <button class="tf-btn" onclick="selectTF(this, 'tf1', 'true')">True</button>
+        <button class="tf-btn" onclick="selectTF(this, 'tf1', 'false')">False</button>
+        <span id="tf1" style="display:none"></span>
+      </div>
+
+      <div class="tf-statement">2. "She <em>is used to</em> waking up early" means she is still trying to adapt.</div>
+      <div class="tf-buttons">
+        <button class="tf-btn" onclick="selectTF(this, 'tf2', 'false')">True</button>
+        <button class="tf-btn" onclick="selectTF(this, 'tf2', 'true')">False</button>
+        <span id="tf2" style="display:none"></span>
+      </div>
+
+      <div class="tf-statement">3. "I'm <em>getting used to</em> managing my team" means the process is happening now.</div>
+      <div class="tf-buttons">
+        <button class="tf-btn" onclick="selectTF(this, 'tf3', 'true')">True</button>
+        <button class="tf-btn" onclick="selectTF(this, 'tf3', 'false')">False</button>
+        <span id="tf3" style="display:none"></span>
+      </div>
+
+      <div class="tf-statement">4. <em>Used to</em> can be used to talk about the future.</div>
+      <div class="tf-buttons">
+        <button class="tf-btn" onclick="selectTF(this, 'tf4', 'false')">True</button>
+        <button class="tf-btn" onclick="selectTF(this, 'tf4', 'true')">False</button>
+        <span id="tf4" style="display:none"></span>
+      </div>
+    </div>
+
+    <button class="btn-check" onclick="checkTF()">✓ Check answers</button>
+    <div class="feedback" id="fb-tf"></div>
+  </div>
+
+  <!-- EX 4: Gap fill - Past tenses -->
+  <div class="card">
+    <div class="card-label">Exercise 4 · Gap Fill — Past Simple & Continuous</div>
+    <h3>Put the verbs in brackets in the correct past tense form.</h3>
+
+    <div class="gap-sentence">1. I <input class="gap-input" id="pg1" placeholder="..."> (open) my salon three years ago.</div>
+    <div class="gap-sentence">2. While I <input class="gap-input" id="pg2" placeholder="..."> (study) biomedicine, I also ran my business.</div>
+    <div class="gap-sentence">3. She <input class="gap-input" id="pg3" placeholder="..."> (not know) how to manage a team at first.</div>
+    <div class="gap-sentence">4. We <input class="gap-input" id="pg4" placeholder="..."> (talk) about prices when the client called.</div>
+    <div class="gap-sentence">5. He <input class="gap-input" id="pg5" placeholder="..."> (work) all weekend on the new menu.</div>
+
+    <button class="btn-check" onclick="checkPastGaps()">✓ Check answers</button>
+    <div class="feedback" id="fb-past"></div>
+  </div>
+
+  <!-- EX 5: Opposites matching -->
+  <div class="card">
+    <div class="card-label">Exercise 5 · Matching — Opposites</div>
+    <h3>Match each word with its opposite.</h3>
+
+    <div class="match-grid">
+      <div>
+        <div class="match-col-label">Word</div>
+        <div class="match-item" id="m1w">pretty<br>
+          <select id="m1"><option value="">choose...</option><option>ugly</option><option>friendly</option><option>old</option><option>unpopular</option></select>
+        </div>
+        <div style="height:10px"></div>
+        <div class="match-item" id="m2w">popular<br>
+          <select id="m2"><option value="">choose...</option><option>ugly</option><option>friendly</option><option>old</option><option>unpopular</option></select>
+        </div>
+        <div style="height:10px"></div>
+        <div class="match-item" id="m3w">modern<br>
+          <select id="m3"><option value="">choose...</option><option>ugly</option><option>friendly</option><option>old</option><option>unfriendly</option></select>
+        </div>
+        <div style="height:10px"></div>
+        <div class="match-item" id="m4w">friendly<br>
+          <select id="m4"><option value="">choose...</option><option>ugly</option><option>unfriendly</option><option>old</option><option>unpopular</option></select>
+        </div>
+      </div>
+      <div>
+        <div class="match-col-label">Opposite</div>
+        <div class="match-item" style="background: var(--coral-pale); color: var(--gray); font-size:0.82rem; line-height: 2;">
+          ugly<br>unfriendly<br>old<br>unpopular
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-check" onclick="checkMatching()">✓ Check answers</button>
+    <div class="feedback" id="fb-match"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ======= PART 2: SPEAKING ======= -->
+  <div class="section-header">
+    <span class="section-badge speaking">Part 2</span>
+    <h2 class="section-title">Speaking Time 🗣️</h2>
+  </div>
+
+  <!-- SPEAKING 1: Tell me about yourself (warm-up) -->
+  <div class="speaking-card">
+    <div class="card-label">Speaking 1 · Warm-up (2 min)</div>
+    <div class="speaking-topic">Introduce yourself as if you're meeting a new client for the first time. Include your name, what you do, where you're from, and one thing you love about your work.</div>
+    <div class="speaking-hints">
+      <p>💡 Language to use</p>
+      <ul>
+        <li>My name is…</li>
+        <li>I'm a businesswoman / entrepreneur</li>
+        <li>I have a beauty business</li>
+        <li>I'm quite passionate about…</li>
+        <li>I'm based in…</li>
+      </ul>
+    </div>
+    <div class="timer-row">
+      <div class="timer-display" id="timer1">2:00</div>
+      <button class="btn-timer" id="tbtn1" onclick="startTimer('timer1', 'tbtn1', 120)">▶ Start</button>
+      <button class="btn-timer" onclick="resetTimer('timer1', 'tbtn1', 120, '2:00')">↺ Reset</button>
+    </div>
+    <button class="btn-note" onclick="toggleNote('note1')">👩‍🏫 Teacher notes</button>
+    <div class="teacher-note" id="note1">
+      <strong>✏️ What to listen for</strong>
+      Check: correct use of "I'm", "I have", vocabulary from Class 1. Did she use any of the new adjectives? Note any tense or vocabulary mistakes gently after she finishes.
+    </div>
+  </div>
+
+  <!-- SPEAKING 2: Describe your past -->
+  <div class="speaking-card">
+    <div class="card-label">Speaking 2 · Past Tenses (2 min)</div>
+    <div class="speaking-topic">Talk about how your business started. What did you do? What was happening in your life at that time? What changed?</div>
+    <div class="speaking-hints">
+      <p>💡 Language to use</p>
+      <ul>
+        <li>I opened my salon in…</li>
+        <li>At that time, I was studying…</li>
+        <li>I used to… / I didn't use to…</li>
+        <li>While I was working, I…</li>
+        <li>Things changed when…</li>
+      </ul>
+    </div>
+    <div class="timer-row">
+      <div class="timer-display" id="timer2">2:00</div>
+      <button class="btn-timer" id="tbtn2" onclick="startTimer('timer2', 'tbtn2', 120)">▶ Start</button>
+      <button class="btn-timer" onclick="resetTimer('timer2', 'tbtn2', 120, '2:00')">↺ Reset</button>
+    </div>
+    <button class="btn-note" onclick="toggleNote('note2')">👩‍🏫 Teacher notes</button>
+    <div class="teacher-note" id="note2">
+      <strong>✏️ What to listen for</strong>
+      Check: past simple vs. past continuous; correct use of "used to"; irregular verbs (opened, started, had, went). Did she use "while" correctly?
+    </div>
+  </div>
+
+  <!-- SPEAKING 3: Roleplay - beauty client -->
+  <div class="speaking-card">
+    <div class="card-label">Speaking 3 · Roleplay 💅🏼</div>
+    <div class="speaking-topic">Let's role play! You are a nail technician talking to an English-speaking client. I'll be the client.</div>
+
+    <div class="roleplay-card">
+      <div class="roleplay-role">📋 Situation</div>
+      <div class="roleplay-text">A tourist from the US walks into your salon and asks for a nail appointment. She doesn't speak Portuguese. You need to welcome her, ask what she wants, describe the options, and tell her the price and wait time.</div>
+    </div>
+
+    <div class="speaking-hints">
+      <p>💡 Useful phrases</p>
+      <ul>
+        <li>Welcome! How can I help you?</li>
+        <li>Would you like…?</li>
+        <li>We have… / We offer…</li>
+        <li>It might take about… minutes</li>
+        <li>The price is quite reasonable</li>
+        <li>Is that okay for you?</li>
+      </ul>
+    </div>
+    <div class="timer-row">
+      <div class="timer-display" id="timer3">3:00</div>
+      <button class="btn-timer" id="tbtn3" onclick="startTimer('timer3', 'tbtn3', 180)">▶ Start</button>
+      <button class="btn-timer" onclick="resetTimer('timer3', 'tbtn3', 180, '3:00')">↺ Reset</button>
+    </div>
+    <button class="btn-note" onclick="toggleNote('note3')">👩‍🏫 Teacher notes</button>
+    <div class="teacher-note" id="note3">
+      <strong>✏️ What to listen for</strong>
+      This is free production — celebrate any correct use of "might", "quite", "would you like". Notice vocabulary gaps and note them to address in next class. Keep tone encouraging throughout the roleplay.
+    </div>
+  </div>
+
+  <!-- SPEAKING 4: Quick fire -->
+  <div class="speaking-card">
+    <div class="card-label">Speaking 4 · Quick Fire Round ⚡ (no repeating!)</div>
+    <div class="speaking-topic">Answer each question in at least 2 sentences. You have 30 seconds each. No repeating words you already used!</div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px;">
+      <div style="padding: 12px 16px; background: var(--coral-pale); border-radius: 10px; font-size: 0.95rem;">
+        💬 What did you use to do on weekends before you had the salon?
+      </div>
+      <div style="padding: 12px 16px; background: var(--coral-pale); border-radius: 10px; font-size: 0.95rem;">
+        💬 Describe your ideal client using 3 adjectives.
+      </div>
+      <div style="padding: 12px 16px; background: var(--coral-pale); border-radius: 10px; font-size: 0.95rem;">
+        💬 What might you do differently in your business next year?
+      </div>
+      <div style="padding: 12px 16px; background: var(--coral-pale); border-radius: 10px; font-size: 0.95rem;">
+        💬 Are you getting used to anything new in your life right now?
+      </div>
+    </div>
+
+    <div class="timer-row">
+      <div class="timer-display" id="timer4">0:30</div>
+      <button class="btn-timer" id="tbtn4" onclick="startTimer('timer4', 'tbtn4', 30)">▶ Start</button>
+      <button class="btn-timer" onclick="resetTimer('timer4', 'tbtn4', 30, '0:30')">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- SCORE CARD -->
+  <div class="score-card" id="scoreCard">
+    <h2>Your Practice Score</h2>
+    <p class="score-msg">Complete the exercises above to see your score!</p>
+    <div class="score-big" id="scoreBig">—</div>
+    <div id="scoreMsg" class="score-msg"></div>
+  </div>
+
+</main>
+
+<script>
+  // ---- PROGRESS ----
+  let checked = 0;
+  const total = 5;
+
+  function updateProgress() {
+    const pct = Math.round((checked / total) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressScore').textContent = checked + ' / ' + total + ' checked';
+  }
+
+  function markChecked() {
+    if (checked < total) {
+      checked++;
+      updateProgress();
+    }
+    updateScoreCard();
+  }
+
+  let scores = {};
+
+  function updateScoreCard() {
+    const done = Object.keys(scores).length;
+    if (done === 0) return;
+    const correct = Object.values(scores).reduce((a, b) => a + b, 0);
+    const max = done * 3;
+    const pct = Math.round((correct / (done * 3)) * 100);
+    document.getElementById('scoreBig').textContent = correct + '/' + (done * 3);
+    const msg = pct >= 80 ? '🌟 Excellent work, Geovana!' : pct >= 60 ? '💪 Good job! Keep practicing.' : '📚 Let\'s review together!';
+    document.getElementById('scoreMsg').textContent = msg;
+  }
+
+  // ---- MC1 ----
+  const mc1Answers = { mc1: 'b', mc2: 'b', mc3: 'c' };
+
+  function checkMC1() {
+    let correct = 0;
+    [1, 2, 3].forEach(n => {
+      const name = 'mc' + n;
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      const options = document.querySelectorAll(`#${name} .mc-option`);
+      options.forEach(o => { o.classList.remove('correct', 'wrong', 'revealed-correct'); });
+      if (!selected) return;
+      const val = selected.value;
+      if (val === mc1Answers[name]) {
+        selected.closest('.mc-option').classList.add('correct');
+        correct++;
+      } else {
+        selected.closest('.mc-option').classList.add('wrong');
+        // reveal correct
+        options.forEach(o => {
+          if (o.querySelector('input').value === mc1Answers[name]) o.classList.add('revealed-correct');
+        });
+      }
+    });
+    const fb = document.getElementById('fb-mc1');
+    fb.className = 'feedback show ' + (correct === 3 ? 'good' : correct >= 1 ? 'partial' : 'bad');
+    fb.textContent = correct === 3 ? '✅ Perfect! All correct!' : `You got ${correct}/3 correct. Review the highlighted answers above.`;
+    scores['mc1'] = correct;
+    markChecked();
+  }
+
+  // ---- GAPS (routine) ----
+  const gapAnswers = ['wake up', 'get up', 'get dressed', 'have breakfast', 'works out'];
+
+  function checkGaps() {
+    let correct = 0;
+    for (let i = 1; i <= 5; i++) {
+      const el = document.getElementById('gap' + i);
+      const val = el.value.trim().toLowerCase();
+      const expected = gapAnswers[i - 1].toLowerCase();
+      el.classList.remove('correct', 'wrong');
+      if (val === expected || (i === 5 && val === 'work out')) {
+        el.classList.add('correct');
+        correct++;
+      } else {
+        el.classList.add('wrong');
+      }
+    }
+    const fb = document.getElementById('fb-gaps');
+    fb.className = 'feedback show ' + (correct === 5 ? 'good' : correct >= 3 ? 'partial' : 'bad');
+    fb.textContent = correct === 5
+      ? '✅ Perfect! Great vocabulary memory!'
+      : `${correct}/5 correct. Check the red fields — answers: wake up, get up, get dressed, have breakfast, works out.`;
+    scores['gaps'] = correct;
+    markChecked();
+  }
+
+  // ---- TF ----
+  const tfCorrect = { tf1: 'true', tf2: 'false', tf3: 'true', tf4: 'true' };
+  const tfSelected = {};
+
+  function selectTF(btn, id, answer) {
+    tfSelected[id] = answer;
+    const row = btn.parentElement;
+    row.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('selected-true', 'selected-false'));
+    btn.classList.add('selected-' + answer);
+  }
+
+  function checkTF() {
+    let correct = 0;
+    for (const [id, correct_ans] of Object.entries(tfCorrect)) {
+      const selected = tfSelected[id];
+      const btns = document.querySelectorAll(`#tf-container .tf-buttons`);
+      // find the right button group
+      const spans = document.querySelectorAll('#tf-container span[id]');
+      spans.forEach(s => {
+        if (s.id === id) {
+          const row = s.closest('.tf-buttons');
+          row.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('correct', 'wrong'));
+          if (selected === correct_ans) {
+            correct++;
+          }
+        }
+      });
+    }
+
+    // visual feedback per item
+    let c = 0;
+    ['tf1', 'tf2', 'tf3', 'tf4'].forEach(id => {
+      const span = document.getElementById(id);
+      const row = span.closest('.tf-buttons');
+      const btns = row.querySelectorAll('.tf-btn');
+      const userAns = tfSelected[id];
+      const correctAns = tfCorrect[id];
+      btns.forEach(btn => {
+        btn.classList.remove('selected-true', 'selected-false');
+        const btnAns = btn.textContent.toLowerCase() === 'true' ? 'true' : 'false';
+        if (btnAns === correctAns) btn.classList.add('correct');
+        if (userAns && btnAns === userAns && userAns !== correctAns) btn.classList.add('wrong');
+      });
+      if (userAns === correctAns) c++;
+    });
+
+    const fb = document.getElementById('fb-tf');
+    fb.className = 'feedback show ' + (c === 4 ? 'good' : c >= 2 ? 'partial' : 'bad');
+    fb.textContent = c === 4 ? '✅ Excellent! You really understand the difference!' : `${c}/4 correct. The green buttons show the correct answers.`;
+    scores['tf'] = c;
+    markChecked();
+  }
+
+  // ---- PAST GAPS ----
+  const pastAnswers = ['opened', 'was studying', "didn't know", 'were talking', 'worked'];
+
+  function checkPastGaps() {
+    let correct = 0;
+    for (let i = 1; i <= 5; i++) {
+      const el = document.getElementById('pg' + i);
+      const val = el.value.trim().toLowerCase();
+      const expected = pastAnswers[i - 1].toLowerCase();
+      el.classList.remove('correct', 'wrong');
+      if (val === expected) {
+        el.classList.add('correct');
+        correct++;
+      } else {
+        el.classList.add('wrong');
+      }
+    }
+    const fb = document.getElementById('fb-past');
+    fb.className = 'feedback show ' + (correct === 5 ? 'good' : correct >= 3 ? 'partial' : 'bad');
+    fb.textContent = correct === 5
+      ? '✅ Perfect tenses!'
+      : `${correct}/5 correct. Answers: opened / was studying / didn't know / were talking / worked.`;
+    scores['past'] = correct;
+    markChecked();
+  }
+
+  // ---- MATCHING ----
+  const matchAnswers = { m1: 'ugly', m2: 'unpopular', m3: 'old', m4: 'unfriendly' };
+
+  function checkMatching() {
+    let correct = 0;
+    ['m1', 'm2', 'm3', 'm4'].forEach(id => {
+      const sel = document.getElementById(id);
+      const card = document.getElementById(id + 'w');
+      card.classList.remove('correct', 'wrong');
+      if (sel.value === matchAnswers[id]) { card.classList.add('correct'); correct++; }
+      else if (sel.value !== '') { card.classList.add('wrong'); }
+    });
+    const fb = document.getElementById('fb-match');
+    fb.className = 'feedback show ' + (correct === 4 ? 'good' : correct >= 2 ? 'partial' : 'bad');
+    fb.textContent = correct === 4
+      ? '✅ All matched correctly!'
+      : `${correct}/4 correct. Answers: pretty→ugly, popular→unpopular, modern→old, friendly→unfriendly.`;
+    scores['match'] = correct;
+    markChecked();
+  }
+
+  // ---- TIMERS ----
+  const timers = {};
+
+  function startTimer(displayId, btnId, seconds) {
+    if (timers[displayId]) { clearInterval(timers[displayId]); }
+    let remaining = seconds;
+    const display = document.getElementById(displayId);
+    const btn = document.getElementById(btnId);
+    display.className = 'timer-display running';
+    btn.classList.add('active');
+    timers[displayId] = setInterval(() => {
+      remaining--;
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      display.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+      if (remaining <= 0) {
+        clearInterval(timers[displayId]);
+        display.className = 'timer-display done';
+        display.textContent = '⏰ Time!';
+        btn.classList.remove('active');
+      }
+    }, 1000);
+  }
+
+  function resetTimer(displayId, btnId, seconds, label) {
+    if (timers[displayId]) clearInterval(timers[displayId]);
+    document.getElementById(displayId).className = 'timer-display';
+    document.getElementById(displayId).textContent = label;
+    document.getElementById(btnId).classList.remove('active');
+  }
+
+  // ---- TEACHER NOTES ----
+  function toggleNote(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('show');
+  }
+</script>
+</body>
+</html>
